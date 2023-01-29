@@ -1,0 +1,44 @@
+//bg: F7FAFF
+
+.body-container{
+    display: grid;
+    grid-template-columns: 45% 55%;
+    background-color: #F7FAFF;
+    height: 88vh;
+}
+
+.body-text{
+    height: 50rem;
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5rem 0 auto;
+}
+
+.body-text-title{
+    font-size: 4rem;
+    line-height: 9.2rem;
+}
+
+.body-text h1{
+    text-align: left;
+}
+
+.body-text-subtext{
+    margin-top: 1.2rem;
+    font-size: 1.8rem;
+}
+
+.body-image{
+    height: 50rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.body-image img{
+    width: 50rem;
+    border-radius: 2rem;
+}
