@@ -1,0 +1,23 @@
+.body-container{
+    background-color: #f2f7ff;
+    height: 88vh;
+}
+
+.tab-selector{
+    display: flex;
+    justify-content: center;
+}
+
+.tab-selector button{
+    width: 12rem;
+    height: 6rem;
+    background-color: blue;
+    margin: 1rem 3rem;
+    font-size: 3rem;
+}
+
+.tab-content-container{
+    background-color: rgb(203, 236, 255);
+    height: 68vh;
+    margin-top: 1rem;
+}

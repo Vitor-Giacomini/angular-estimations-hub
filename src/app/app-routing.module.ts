@@ -10,6 +10,18 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('../app/modules/feature/home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'overview',
+    loadChildren: () => import('../app/modules/feature/overview/overview.module').then(m => m.OverviewModule)
+  },
+  {
+    path: 'estimates',
+    loadChildren: () => import('../app/modules/feature/estimates/estimates.module').then(m => m.EstimatesModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('../app/modules/feature/dashboard/dashboard.module').then(m => m.DashboardModule)
   }
 ];
 
