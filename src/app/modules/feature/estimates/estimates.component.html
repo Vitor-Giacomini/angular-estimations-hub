@@ -1,14 +1,29 @@
 <app-navbar></app-navbar>
     <div class="body-container">
         <div class="tab-selector">
-            <button>Tab 1</button>
-            <button>Tab 2</button>
-            <button>Tab 3</button>
+            <button class="tab-links" (click)="setTab('by-furniture')" [ngStyle]="{'color': selectedTab == 'by-furniture' ? 'blue' : 'black'}">
+                <i class="fa-solid fa-chair"></i>By Furniture
+            </button>
+            <button class="tab-links" (click)="setTab('all-estimates')" [ngStyle]="{'color': selectedTab == 'all-estimates' ? 'blue' : 'black'}">
+                <i class="fa-solid fa-list-ul"></i>All Estimates
+            </button>
+            <button class="tab-links" (click)="setTab('by-estimator')" [ngStyle]="{'color': selectedTab == 'by-estimator' ? 'blue' : 'black'}">
+                <i class="fa-regular fa-user"></i>By Estimator
+            </button>
         </div>
         <div class="tab-content-container">
-            <div class="all-estimates"></div> 
-            <div class="by-estimator"></div>    <!-- Missing ngIf [tabVariable]-->
-            <div class="by-furniture"></div>
+
+            <div id="all-estimates" class="tabcontent" [ngStyle]="{'display': selectedTab == 'all-estimates' ? 'block' : 'none'}">
+                <h3>all-estimates</h3>
+            </div>
+            
+            <div id="by-estimator" class="tabcontent" [ngStyle]="{'display': selectedTab == 'by-estimator' ? 'block' : 'none'}">
+                <h3>by-estimator</h3>
+            </div>
+            
+            <div id="by-furniture" class="tabcontent" [ngStyle]="{'display': selectedTab == 'by-furniture' ? 'block' : 'none'}">
+                <h3>by-furniture</h3>
+            </div>
         </div>
     </div>
 <app-footer></app-footer>
