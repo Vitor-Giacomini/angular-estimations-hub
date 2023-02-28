@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './modules/feature/dashboard-page/dashboard.component';
+import { EstimatesComponent } from './modules/feature/estimates-page/estimates.component';
+import { HomeComponent } from './modules/feature/home-page/home.component';
+import { OverviewComponent } from './modules/feature/overview-page/overview.component';
 
 const routes: Routes = [
   {
@@ -9,19 +13,19 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('../app/modules/feature/home/home.module').then(m => m.HomeModule)
+    component: HomeComponent
   },
   {
     path: 'overview',
-    loadChildren: () => import('../app/modules/feature/overview/overview.module').then(m => m.OverviewModule)
+    component: OverviewComponent
   },
   {
     path: 'estimates',
-    loadChildren: () => import('../app/modules/feature/estimates/estimates.module').then(m => m.EstimatesModule)
+    component: EstimatesComponent
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('../app/modules/feature/dashboard/dashboard.module').then(m => m.DashboardModule)
+    component: DashboardComponent
   }
 ];
 
