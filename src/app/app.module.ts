@@ -7,9 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './layout/ui/footer/footer.component';
 import { NavbarComponent } from './layout/ui/navbar/navbar.component';
-import { EstimatesComponent } from './modules/feature/estimates-page/estimates.component';
+import { EstimationsComponent } from './modules/feature/estimations-page/estimations.component';
 import { DashboardComponent } from './modules/feature/dashboard-page/dashboard.component';
 import { OverviewComponent } from './modules/feature/overview-page/overview.component';
+import { EstimationsListComponent } from './modules/feature/estimations-list/estimations-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { OverviewComponent } from './modules/feature/overview-page/overview.comp
     FooterComponent,
     NavbarComponent,
     HomeComponent,
-    EstimatesComponent,
+    EstimationsComponent,
+    EstimationsListComponent,
     DashboardComponent,
     OverviewComponent
   ],
