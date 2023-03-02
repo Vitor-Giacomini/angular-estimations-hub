@@ -1,7 +1,7 @@
 export interface Estimation{
-    id: number,
-    description: string,
-    savings: number,
+    estimationId: number,
+    estimationDescription: string,
+    estimationSavings: number,
     estimatorId: number,
     productId: number
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Product } from '../@models/product.model';
 
 @Injectable({
@@ -13,7 +13,9 @@ export class ProductService {
   private baseUrl = 'http://localhost:8080'
 
   getProducts():Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.baseUrl}/product`);
+    return this.http.get<{ response: Product[] }>(`${this.baseUrl}/product`).pipe(
+      map((data) => data.response)
+    );
   }
 
   getProductById(id: Number):Observable<Product[]>{

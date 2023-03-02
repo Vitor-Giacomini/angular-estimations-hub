@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, EMPTY, map, Observable } from 'rxjs';
 import { Estimator } from '../@models/estimator.model';
 
 @Injectable({
@@ -13,12 +13,13 @@ export class EstimatorService {
   private baseUrl = 'http://localhost:8080'
 
   getEstimators():Observable<Estimator[]>{
-    console.log(this.baseUrl + " aaaaaaaaaaaaaaaaaaaaaaaaa");
-    return this.http.get<Estimator[]>(`${this.baseUrl}/estimator`);
-    return this.http.get<Estimator[]>('localhost:8080/estimation');
+
+    return this.http.get<{ response: Estimator[] }>(`${this.baseUrl}/estimator`).pipe(
+      map((data) => data.response)
+    );
   }
 
-  getEstimatorById(id: Number):Observable<Estimator[]>{
-    return this.http.get<Estimator[]>(`${this.baseUrl}/estimator/${id}`);
+  getEstimatorById(id: Number):Observable<Estimator>{
+    return this.http.get<Estimator>(`${this.baseUrl}/estimator/${id}`);
   }
 }

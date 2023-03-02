@@ -1,6 +1,29 @@
 <div *ngIf="estimationList">
-    <div *ngFor="let estimation of estimationList">
-        <a>aaaaaaa</a>
-        <h1>{{estimation.description}}</h1>
+    <div *ngFor="let estimation of estimationList" class="list-container">
+        <div class="table-container headers-container">
+            <th>ID</th>
+            <th>Product</th>
+            <th>Estimator</th>
+            <th>Description</th>
+            <th>Savings</th>
+            <th>Status</th>
+        </div>
+        <div class="table-container filters-container">
+            <input type="text" placeholder=" Search...">
+            <input type="text" placeholder=" Search Product">
+            <input type="text" placeholder=" Search Estimator">
+            <input type="text" placeholder=" Search Description">
+            <input type="text" placeholder=" Search...">
+            <input type="text" placeholder=" Search Status">
+        </div>
+        <div class="table-container row-container">
+            <td>{{estimation.estimationId}}</td>
+            <td>{{estimation.productId}}</td>
+            <td>{{estimation.estimatorId}}</td>
+            <td>{{estimation.estimationDescription}}</td>
+            <td>${{estimation.estimationSavings}}</td>
+            <td class="estimation-status">Proposed</td>
+        </div>
+        <div class="table-container table-footer"></div>
     </div>
 </div>

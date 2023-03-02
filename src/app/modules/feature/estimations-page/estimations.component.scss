@@ -3,29 +3,7 @@
     height: 88vh;
 }
 
-.tab-selector{
-    display: flex;
-    justify-content: center;
-    margin-left: 1rem;
-}
-
-.tab-selector button{
-    width: 22rem;
-    height: 3.8rem;
-    background-color: #f2f7ff;
-    border: none;
-    border-bottom: 1px solid black;
-    margin: 1rem 0 0.5rem 0;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-.tab-selector i{
-    margin-right: 1rem;
-}
-
-.tab-content-container{
-
-    height: 68vh;
-    margin-top: 1rem;
+.list-container{
+    padding-top: 1.5rem;
+    height: 60vh;
 }

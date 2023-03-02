@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { catchError, combineLatest, EMPTY, ignoreElements, of, startWith } from 'rxjs';
+import { catchError, combineLatest, EMPTY, ignoreElements, map, mergeMap, Observable, of, startWith } from 'rxjs';
 import { EstimationService } from '../../data-access/estimation.service';
 import { EstimatorService } from '../../data-access/estimator.service';
 import { ProductService } from '../../data-access/product.service';
@@ -18,12 +18,10 @@ export class EstimationsComponent{
     private productService: ProductService
   ) {}
 
-  estimations$ = combineLatest([
-    this.estimationService.getEstimations().pipe(
-      startWith(null),
-      catchError(()=> EMPTY)
-    ),
-  ])
+  estimations$ = this.estimationService.getEstimations().pipe(
+    startWith(null),
+    catchError(() => EMPTY)
+  );
 
   estimationsError$ = this.estimationService.getEstimations().pipe(
     ignoreElements(),
@@ -66,12 +64,6 @@ export class EstimationsComponent{
     })
   )
 
-  selectedTab: String = "all-estimates";
-
-  setTab(tabName: String): void {
-    this.selectedTab = tabName;
-  }
-
   viewModel$ = combineLatest({
     estimations: this.estimations$,
     estimationsError: this.estimationsError$,
@@ -80,5 +72,11 @@ export class EstimationsComponent{
     products: this.products$,
     productsError: this.productsError$
   })
+
+  selectedTab: String = "all-estimates";
+
+  setTab(tabName: String): void {
+    this.selectedTab = tabName;
+  }
 
 }
