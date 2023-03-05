@@ -20,7 +20,7 @@ const routes: Routes = [
     component: OverviewComponent
   },
   {
-    path: 'estimates',
+    path: 'estimations',
     component: EstimationsComponent
   },
   {
