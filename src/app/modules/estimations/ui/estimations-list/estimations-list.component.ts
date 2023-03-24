@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Estimation } from '../../@models/estimation.model';
-import { Estimator } from '../../@models/estimator.model';
-import { Product } from '../../@models/product.model';
 
 @Component({
   selector: 'app-estimations-list',

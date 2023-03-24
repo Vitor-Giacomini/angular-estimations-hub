@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './modules/feature/dashboard-page/dashboard.component';
-import { EstimationsComponent } from './modules/feature/estimations-page/estimations.component';
-import { HomeComponent } from './modules/feature/home-page/home.component';
-import { OverviewComponent } from './modules/feature/overview-page/overview.component';
+import { EstimationsComponent } from './modules/estimations/feature/estimations-page/estimations.component';
+import { EstimatorsComponent } from './modules/estimators/feature/estimators-page/estimators.component';
+import { HomeComponent } from './modules/home/home-page/home.component';
+import { OverviewComponent } from './modules/overview/feature/overview-page/overview.component';
 
 const routes: Routes = [
   {
@@ -21,11 +21,12 @@ const routes: Routes = [
   },
   {
     path: 'estimations',
-    component: EstimationsComponent
+    component: EstimationsComponent,
+    loadChildren: () => import('./modules/estimations/estimations.module').then(m => m.EstimationsModule)
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent
+    path: 'estimators',
+    component: EstimatorsComponent
   }
 ];
 
