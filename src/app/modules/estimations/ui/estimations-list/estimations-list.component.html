@@ -7,6 +7,7 @@
             <th>Description</th>
             <th>Savings</th>
             <th>Status</th>
+            <th>Actions</th>
         </div>
         <div class="table-container filters-container">
             <input type="text" placeholder=" Search...">
@@ -29,6 +30,17 @@
             <td>{{estimation.estimationDescription}}</td>
             <td>${{estimation.estimationSavings}}</td>
             <td class="estimation-status">Proposed</td>
+            <td class="estimation-actions">
+                <button (click)="acceptEstimation(estimation)">
+                    <i class="fa-solid fa-check fa-2xl" style="color: #000000;"></i>
+                </button>
+                <button (click)="proposeEstimation(estimation)">
+                    <i class="fa-solid fa-clock fa-2xl"></i>
+                </button>
+                <button (click)="rejectEstimation(estimation)">
+                    <i class="fa-solid fa-xmark fa-2xl"></i>
+                </button>
+            </td>
         </div>
         <div class="table-container table-footer"></div>
     </div>

@@ -15,4 +15,16 @@ export class EstimationsListComponent implements OnInit{
   @Input() estimationList!: Estimation[];
   //@Input() estimatorList!: Estimator[];
   //@Input() productList!: Product[];
+
+  acceptEstimation(estimation: Estimation){
+    
+  }
+
+  proposeEstimation(estimation: Estimation){
+    
+  }
+
+  rejectEstimation(estimation: Estimation){
+    
+  }
 }
