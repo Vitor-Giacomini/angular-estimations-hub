@@ -9,7 +9,6 @@ import { NavbarComponent } from './layout/ui/navbar/navbar.component';
 import { HomeComponent } from './modules/home/home-page/home.component';
 import { EstimationsComponent } from './modules/estimations/feature/estimations-page/estimations.component';
 import { OverviewComponent } from './modules/overview/feature/overview-page/overview.component';
-import { EstimatorsComponent } from './modules/estimators/feature/estimators-page/estimators.component';
 import { EstimationsListComponent } from './modules/estimations/ui/estimations-list/estimations-list.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { EstimationsListComponent } from './modules/estimations/ui/estimations-l
     HomeComponent,
     EstimationsComponent,
     OverviewComponent,
-    EstimatorsComponent,
     EstimationsListComponent
   ],
   imports: [

@@ -1,82 +1,127 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { catchError, combineLatest, EMPTY, ignoreElements, map, mergeMap, Observable, of, startWith } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, debounceTime, distinctUntilChanged, EMPTY, ignoreElements, map, of, startWith } from 'rxjs';
 import { EstimationService } from '../../data-access/estimation.service';
-import { EstimatorService } from '../../data-access/estimator.service';
-import { ProductService } from '../../data-access/product.service';
 
 @Component({
   selector: 'app-estimations',
   templateUrl: './estimations.component.html',
   styleUrls: ['./estimations.component.scss']
 })
-export class EstimationsComponent{
+export class EstimationsComponent {
+
+  searchIdValue = '';
+  searchProductValue = '';
+  searchEstimatorValue = '';
+  searchDescriptionValue = '';
+  searchSavingsValue = '';
+  searchStatusValue = '';
+
+  searchedIdAction$ = new BehaviorSubject<string | null>(null);
+  searchedProductAction$ = new BehaviorSubject<string | null>(null);
+  searchedEstimatorAction$ = new BehaviorSubject<string | null>(null);
+  searchedDescriptionAction$ = new BehaviorSubject<string | null>(null);
+  searchedSavingsAction$ = new BehaviorSubject<string | null>(null);
+  searchedStatusAction$ = new BehaviorSubject<string | null>(null);
 
   constructor(
-    private estimationService: EstimationService, 
-    private estimatorService: EstimatorService, 
-    private productService: ProductService
-  ) {}
+    private estimationService: EstimationService
+  ) { }
 
-  estimations$ = this.estimationService.getEstimations().pipe(
+  estimations$ = combineLatest([this.estimationService.getEstimations().pipe(
     startWith(null),
     catchError(() => EMPTY)
+  ),
+  this.searchedIdAction$.pipe(
+    distinctUntilChanged(),
+    debounceTime(500),
+  ),
+  this.searchedProductAction$.pipe(
+    distinctUntilChanged(),
+    debounceTime(500),
+  ),
+  this.searchedEstimatorAction$.pipe(
+    distinctUntilChanged(),
+    debounceTime(500),
+  ),
+  this.searchedDescriptionAction$.pipe(
+    distinctUntilChanged(),
+    debounceTime(500),
+  ),
+  this.searchedSavingsAction$.pipe(
+    distinctUntilChanged(),
+    debounceTime(500),
+  ),
+  this.searchedStatusAction$.pipe(
+    distinctUntilChanged(),
+    debounceTime(500),
+  )
+  ]).pipe(
+    map(([estimations, searchedId, searchedProduct, searchedEstimator, searchedDescription, searchedSavings, searchedStatus]) => {
+      if (searchedId) {
+        estimations = estimations?.filter(estimation => 
+          estimation.estimationId.toString().match(searchedId))!;
+      }
+      if (searchedProduct) {
+        estimations = estimations?.filter(estimation => 
+          estimation.productName.toLowerCase().includes(searchedProduct.toLowerCase()))!;
+      }
+      if (searchedEstimator) {
+        estimations = estimations?.filter(estimation => 
+          estimation.estimatorName.toLowerCase().includes(searchedEstimator.toLowerCase()))!;
+      }
+      if (searchedDescription) {
+        estimations = estimations?.filter(estimation => 
+          estimation.estimationDescription.toLowerCase().includes(searchedDescription.toLowerCase()))!;
+      }
+      if (searchedSavings) {
+        estimations = estimations?.filter(estimation => 
+          estimation.estimationSavings.toString().match(searchedSavings))!;
+      }
+      if (searchedStatus) {
+        estimations = estimations?.filter(estimation => 
+          estimation.estimationStatus.toLowerCase().includes(searchedStatus.toLowerCase()))!;
+      }
+      return estimations;
+    })
   );
 
   estimationsError$ = this.estimationService.getEstimations().pipe(
     ignoreElements(),
     startWith(null),
     catchError(error => {
-      error = new HttpErrorResponse({status: 404, statusText: 'Could not load estimations'});
-      return of(error);
-    })
-  )
-
-  estimators$ = combineLatest([
-    this.estimatorService.getEstimators().pipe(
-      startWith(null),
-      catchError(()=> EMPTY)
-    ),
-  ])
-
-  estimatorsError$ = this.estimatorService.getEstimators().pipe(
-    ignoreElements(),
-    startWith(null),
-    catchError(error => {
-      error = new HttpErrorResponse({status: 404, statusText: 'Could not load estimators'});
-      return of(error);
-    })
-  )
-
-  products$ = combineLatest([
-    this.productService.getProducts().pipe(
-      startWith(null),
-      catchError(()=> EMPTY)
-    ),
-  ])
-
-  productsError$ = this.productService.getProducts().pipe(
-    ignoreElements(),
-    startWith(null),
-    catchError(error => {
-      error = new HttpErrorResponse({status: 404, statusText: 'Could not load products'});
+      error = new HttpErrorResponse({ status: 404, statusText: 'Could not load estimations' });
       return of(error);
     })
   )
 
   viewModel$ = combineLatest({
     estimations: this.estimations$,
-    estimationsError: this.estimationsError$,
-    estimators: this.estimators$,
-    estimatorsError: this.estimatorsError$,
-    products: this.products$,
-    productsError: this.productsError$
+    estimationsError: this.estimationsError$
   })
 
-  selectedTab: String = "all-estimates";
+  searchId(id: string) {
+    this.searchedIdAction$.next(id);
+  }
 
-  setTab(tabName: String): void {
-    this.selectedTab = tabName;
+  searchProduct(product: string) {
+    this.searchedProductAction$.next(product);
+  }
+
+  searchEstimator(estimator: string) {
+    this.searchedEstimatorAction$.next(estimator);
+  }
+
+  searchDescription(description: string) {
+    this.searchedDescriptionAction$.next(description);
+  }
+
+  searchSavings(savings: string) {
+    this.searchedSavingsAction$.next(savings);
+  }
+
+  searchStatus(status: string) {
+    this.searchedStatusAction$.next(status);
   }
 
 }

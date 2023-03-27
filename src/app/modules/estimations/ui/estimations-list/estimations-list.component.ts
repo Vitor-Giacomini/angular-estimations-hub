@@ -27,4 +27,12 @@ export class EstimationsListComponent implements OnInit{
   rejectEstimation(estimation: Estimation){
     
   }
+
+  getStatusColor(status: String){
+    switch(status){
+      case 'accepted': return 'estimation-status status-accepted';
+      case 'rejected': return 'estimation-status status-rejected';
+      default: return 'estimation-status status-proposed';
+    }
+  }
 }

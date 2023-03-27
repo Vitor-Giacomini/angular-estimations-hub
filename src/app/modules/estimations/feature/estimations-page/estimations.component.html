@@ -1,7 +1,35 @@
 <app-navbar></app-navbar>
     <div class="body-container">
         <ng-container *ngIf="viewModel$ | async as vm">
-            <div id="all-estimates" class="list-container" [ngStyle]="{'display': selectedTab == 'all-estimates' ? 'block' : 'none'}">
+            <div class="list-container">
+                <div class="table-container headers-container">
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Estimator</th>
+                    <th>Description</th>
+                    <th>Savings</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </div>
+                <div class="table-container filters-container">
+                    <input type="text" [(ngModel)]="searchIdValue" 
+                    (ngModelChange)="searchId(searchIdValue)" placeholder="Search...">
+
+                    <input type="text" [(ngModel)]="searchProductValue" 
+                    (ngModelChange)="searchProduct(searchProductValue)" placeholder="Search Product">
+
+                    <input type="text" [(ngModel)]="searchEstimatorValue" 
+                    (ngModelChange)="searchEstimator(searchEstimatorValue)" placeholder="Search Estimator">
+
+                    <input type="text" [(ngModel)]="searchDescriptionValue" 
+                    (ngModelChange)="searchDescription(searchDescriptionValue)" placeholder="Search Description">
+
+                    <input type="text" [(ngModel)]="searchSavingsValue" 
+                    (ngModelChange)="searchSavings(searchSavingsValue)" placeholder="Search...">
+
+                    <input type="text" [(ngModel)]="searchStatusValue" 
+                    (ngModelChange)="searchStatus(searchStatusValue)" placeholder="Search Status">
+                </div>
                 <app-estimations-list *ngIf="vm.estimations" [estimationList]="vm.estimations"></app-estimations-list>
             </div>
         </ng-container>

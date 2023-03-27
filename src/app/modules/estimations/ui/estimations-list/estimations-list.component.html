@@ -1,22 +1,5 @@
 <div *ngIf="estimationList">
     <div class="list-container">
-        <div class="table-container headers-container">
-            <th>ID</th>
-            <th>Product</th>
-            <th>Estimator</th>
-            <th>Description</th>
-            <th>Savings</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </div>
-        <div class="table-container filters-container">
-            <input type="text" placeholder=" Search...">
-            <input type="text" placeholder=" Search Product">
-            <input type="text" placeholder=" Search Estimator">
-            <input type="text" placeholder=" Search Description">
-            <input type="text" placeholder=" Search...">
-            <input type="text" placeholder=" Search Status">
-        </div>
         <div *ngFor="let estimation of estimationList" class="table-container row-container">
             <td>{{estimation.estimationId}}</td>
             <td class="group-td">
@@ -29,15 +12,15 @@
             </td>
             <td>{{estimation.estimationDescription}}</td>
             <td>${{estimation.estimationSavings}}</td>
-            <td class="estimation-status">Proposed</td>
+            <td class="estimation-status" [ngClass]="getStatusColor(estimation.estimationStatus)">{{estimation.estimationStatus}}</td>
             <td class="estimation-actions">
-                <button (click)="acceptEstimation(estimation)">
-                    <i class="fa-solid fa-check fa-2xl" style="color: #000000;"></i>
+                <button (click)="acceptEstimation(estimation)" [ngStyle]="{'background-color': estimation.estimationStatus == 'accepted' ? 'rgba(144, 238, 144)' : 'rgba(144, 238, 144, 0.100)'}">
+                    <i class="fa-solid fa-check fa-2xl"></i>
                 </button>
-                <button (click)="proposeEstimation(estimation)">
-                    <i class="fa-solid fa-clock fa-2xl"></i>
+                <button (click)="proposeEstimation(estimation)" [ngStyle]="{'background-color': estimation.estimationStatus == 'proposed' ? 'rgba(255, 213, 135)' : 'rgba(255, 213, 135, 0.100)'}">
+                    <i class="fa-regular fa-clock fa-2xl"></i>
                 </button>
-                <button (click)="rejectEstimation(estimation)">
+                <button (click)="rejectEstimation(estimation)" [ngStyle]="{'background-color': estimation.estimationStatus == 'rejected' ? 'rgba(240, 128, 128)' : 'rgba(240, 128, 128, 0.100)'}">
                     <i class="fa-solid fa-xmark fa-2xl"></i>
                 </button>
             </td>

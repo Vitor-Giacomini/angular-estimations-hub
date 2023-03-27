@@ -6,35 +6,13 @@
 
 .table-container{
     width: 92vw;
+    height: 2.8rem;
     background-color: white;
     border-left: 1px solid black;
     border-right: 1px solid black;
     display: grid;
     grid-template-rows: 1;
     grid-template-columns: 6% 16% 18% 32% 6% 10% 12%;
-}
-
-.headers-container{
-    align-content: center;
-    padding: 1rem 0;
-    border-radius: 1rem 1rem 0 0;
-    border-top: 1px solid black;
-    border-bottom: none;
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-.filters-container{
-    height: 3rem;
-    padding-bottom: 1rem;
-}
-
-.filters-container input{
-    width: 80%;
-    justify-self: center;
-    border-radius: 0.4rem;
-    border: 1px solid black;
-    font-size: 1.1rem;
 }
 
 td{
@@ -70,8 +48,9 @@ td{
     font-family: Arial, Helvetica, sans-serif;
     padding: 0.3rem 0.5rem;
     font-size: 1.2rem;
-    width: min-content;
-    height: 60%;
+    width: 5.8rem;
+    height: 65%;
+    text-transform: capitalize;
 }
 
 .status-proposed{
@@ -81,12 +60,12 @@ td{
 
 .status-accepted{
     background-color: rgb(147, 255, 135);
-    color: rgb(50, 165, 42);
+    color: rgb(10, 61, 6);
 }
 
 .status-rejected{
-    background-color: rgb(255, 135, 135);
-    color: rgb(143, 5, 5);
+    background-color: rgb(255, 155, 155);
+    color: rgb(92, 5, 5);
 }
 
 .table-footer{
@@ -103,30 +82,12 @@ td{
         width: 2.5rem;
         height: 2.5rem;
         margin: 0 0.5rem;
+        text-align: center;
+        line-height: 2rem;
         cursor: pointer;
     }
 
-    button:nth-of-type(1){
-        background-color: rgba(144, 238, 144, 0.189);
-    }
-
-    button:nth-of-type(1):hover{
-        background-color: rgba(144, 238, 144);
-    }
-
-    button:nth-of-type(2){
-        background-color: rgba(237, 196, 14, 0.189);
-    }
-
-    button:nth-of-type(2):hover{
-        background-color: rgba(237, 196, 14);
-    }
-
-    button:nth-of-type(3){
-        background-color: rgba(240, 128, 128, 0.189);
-    }
-
-    button:nth-of-type(3):hover{
-        background-color: rgba(240, 128, 128);
+    i{
+        vertical-align: middle;
     }
 }
