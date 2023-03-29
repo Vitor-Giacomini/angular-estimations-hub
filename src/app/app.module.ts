@@ -10,6 +10,7 @@ import { HomeComponent } from './modules/home/home-page/home.component';
 import { EstimationsComponent } from './modules/estimations/feature/estimations-page/estimations.component';
 import { OverviewComponent } from './modules/overview/feature/overview-page/overview.component';
 import { EstimationsListComponent } from './modules/estimations/ui/estimations-list/estimations-list.component';
+import { ProductsComponent } from './modules/products/feature/products-page/products.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EstimationsListComponent } from './modules/estimations/ui/estimations-l
     HomeComponent,
     EstimationsComponent,
     OverviewComponent,
-    EstimationsListComponent
+    EstimationsListComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

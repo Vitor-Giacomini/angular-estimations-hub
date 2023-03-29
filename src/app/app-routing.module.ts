@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EstimationsComponent } from './modules/estimations/feature/estimations-page/estimations.component';
 import { HomeComponent } from './modules/home/home-page/home.component';
 import { OverviewComponent } from './modules/overview/feature/overview-page/overview.component';
+import { ProductsComponent } from './modules/products/feature/products-page/products.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'estimations',
     component: EstimationsComponent
+  },
+  {
+    path: 'products',
+    component: ProductsComponent
   }
 ];
 

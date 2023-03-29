@@ -1,4 +1,4 @@
-import { Estimation } from "./estimation.model";
+import { Estimation } from "../../estimations/@models/estimation.model";
 
 export interface Product{
     id: number,
