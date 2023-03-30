@@ -1,9 +1,8 @@
 import { Estimation } from "../../estimations/@models/estimation.model";
 
 export interface Product{
-    id: number,
-    name: string,
-    photo: string,
-    price: number,
+    productId: number,
+    productName: string,
+    productPhoto: string,
     estimationList: Estimation[]
 }

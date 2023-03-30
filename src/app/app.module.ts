@@ -11,6 +11,8 @@ import { EstimationsComponent } from './modules/estimations/feature/estimations-
 import { OverviewComponent } from './modules/overview/feature/overview-page/overview.component';
 import { EstimationsListComponent } from './modules/estimations/ui/estimations-list/estimations-list.component';
 import { ProductsComponent } from './modules/products/feature/products-page/products.component';
+import { ProductListComponent } from './modules/products/ui/product-list/product-list.component';
+import { ProductCardComponent } from './modules/products/ui/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { ProductsComponent } from './modules/products/feature/products-page/prod
     EstimationsComponent,
     OverviewComponent,
     EstimationsListComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductListComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,

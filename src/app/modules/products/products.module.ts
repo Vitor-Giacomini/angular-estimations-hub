@@ -8,10 +8,7 @@ import { ProductListComponent } from './ui/product-list/product-list.component';
 
 
 @NgModule({
-  declarations: [
-    ProductCardComponent,
-    ProductListComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     ProductsRoutingModule
