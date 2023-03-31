@@ -5,10 +5,12 @@
     grid-template-columns: 45% 55%;
     background-color: #f2f7ff;
     height: 88vh;
+    justify-items: center;
+    align-items: center;
 }
 
 .body-text{
-    height: 50rem;
+    height: 81vh;
     width: min-content;
     display: flex;
     flex-direction: column;
@@ -32,7 +34,7 @@
 }
 
 .body-image{
-    height: 50rem;
+    height: 81vh;
     display: flex;
     align-items: center;
     justify-content: left;
