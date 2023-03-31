@@ -8,17 +8,22 @@ import { Estimation } from '../@models/estimation.model';
 })
 export class EstimationService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  private baseUrl = 'http://localhost:8080'
+  private baseUrl = 'localhost:8080/estimation'
 
-  getEstimations():Observable<Estimation[]>{
-    return this.http.get<{ response: Estimation[] }>(`${this.baseUrl}/estimation`).pipe(
+  getEstimations(): Observable<Estimation[]> {
+    return this.http.get<{ response: Estimation[] }>(`http://${this.baseUrl}`).pipe(
       map((data) => data.response)
     );
   }
 
-  getEstimationById(id: Number):Observable<Estimation>{
-    return this.http.get<Estimation>(`${this.baseUrl}/estimation/${id}`);
+  setEstimationStatus(estimation: Estimation) {
+    console.log('running');
+    this.http.put(`http://${this.baseUrl}/${estimation.estimationId}`, estimation)
+      .subscribe(
+        (error) => console.log(error)
+      );
   }
+
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Estimation } from '../../@models/estimation.model';
+import { EstimationService } from '../../data-access/estimation.service';
 
 @Component({
   selector: 'app-estimations-list',
@@ -7,6 +8,8 @@ import { Estimation } from '../../@models/estimation.model';
   styleUrls: ['./estimations-list.component.scss']
 })
 export class EstimationsListComponent implements OnInit{
+
+  constructor(private estimationService: EstimationService) {}
 
   ngOnInit(): void {
     console.log(this.estimationList);
@@ -16,16 +19,9 @@ export class EstimationsListComponent implements OnInit{
   //@Input() estimatorList!: Estimator[];
   //@Input() productList!: Product[];
 
-  acceptEstimation(estimation: Estimation){
-    
-  }
-
-  proposeEstimation(estimation: Estimation){
-    
-  }
-
-  rejectEstimation(estimation: Estimation){
-    
+  setEstimationStatus(estimation: Estimation, status: string){
+    estimation.estimationStatus = status;
+    this.estimationService.setEstimationStatus(estimation);
   }
 
   getStatusColor(status: String){
