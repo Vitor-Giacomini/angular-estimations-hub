@@ -13,6 +13,7 @@ export class EstimationsListComponent implements OnInit{
 
   ngOnInit(): void {
     console.log(this.estimationList);
+    this.estimationList.sort((a, b) => b.estimationId - a.estimationId);
   }
 
   @Input() estimationList!: Estimation[];
