@@ -13,7 +13,7 @@ import { EstimationsListComponent } from './modules/estimations/ui/estimations-l
 import { ProductsComponent } from './modules/products/feature/products-page/products.component';
 import { ProductListComponent } from './modules/products/ui/product-list/product-list.component';
 import { ProductCardComponent } from './modules/products/ui/product-card/product-card.component';
-
+import { NewEstimationComponent } from './modules/estimations/feature/new-estimation-page/new-estimation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +25,8 @@ import { ProductCardComponent } from './modules/products/ui/product-card/product
     EstimationsListComponent,
     ProductsComponent,
     ProductListComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    NewEstimationComponent
   ],
   imports: [
     BrowserModule,

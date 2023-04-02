@@ -4,6 +4,7 @@ import { EstimationsComponent } from './modules/estimations/feature/estimations-
 import { HomeComponent } from './modules/home/home-page/home.component';
 import { OverviewComponent } from './modules/overview/feature/overview-page/overview.component';
 import { ProductsComponent } from './modules/products/feature/products-page/products.component';
+import { NewEstimationComponent } from './modules/estimations/feature/new-estimation-page/new-estimation.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductsComponent
+  },
+  {
+    path: 'new-estimation',
+    component: NewEstimationComponent
   }
 ];
 
