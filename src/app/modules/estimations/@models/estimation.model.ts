@@ -1,10 +1,10 @@
 export interface Estimation{
-    estimationId: number,
+    estimationId?: number,
     estimationDescription: string,
     estimationSavings: number,
-    estimationStatus: string,
+    estimationStatus?: string,
     estimatorName: string,
-    estimatorPhoto: string,
+    estimatorPhoto?: string,
     productName: string,
-    productPhoto: string
+    productPhoto?: string
 }
