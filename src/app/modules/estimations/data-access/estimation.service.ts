@@ -26,4 +26,12 @@ export class EstimationService {
       );
   }
 
+  postEstimation(estimation: Estimation) {
+    console.log('running');
+    this.http.post(`http://${this.baseUrl}`, estimation)
+      .subscribe(
+        (error) => console.log(error)
+      );
+  }
+
 }
