@@ -60,7 +60,7 @@ export class EstimationsComponent {
     map(([estimations, searchedId, searchedProduct, searchedEstimator, searchedDescription, searchedSavings, searchedStatus]) => {
       if (searchedId) {
         estimations = estimations?.filter(estimation => 
-          estimation.estimationId.toString().match(searchedId))!;
+          estimation.estimationId!.toString().match(searchedId))!;
       }
       if (searchedProduct) {
         estimations = estimations?.filter(estimation => 
@@ -80,7 +80,7 @@ export class EstimationsComponent {
       }
       if (searchedStatus) {
         estimations = estimations?.filter(estimation => 
-          estimation.estimationStatus.toLowerCase().includes(searchedStatus.toLowerCase()))!;
+          estimation.estimationStatus!.toLowerCase().includes(searchedStatus.toLowerCase()))!;
       }
       return estimations;
     })

@@ -12,7 +12,7 @@
             </td>
             <td>{{estimation.estimationDescription}}</td>
             <td>${{estimation.estimationSavings}}</td>
-            <td class="estimation-status" [ngClass]="getStatusColor(estimation.estimationStatus)">{{estimation.estimationStatus}}</td>
+            <td class="estimation-status" [ngClass]="getStatusColor(estimation.estimationStatus!)">{{estimation.estimationStatus}}</td>
             <td class="estimation-actions">
                 <button (click)="setEstimationStatus(estimation, 'accepted')" [ngStyle]="{'background-color': estimation.estimationStatus == 'accepted' ? 'rgba(144, 238, 144)' : 'rgba(144, 238, 144, 0.100)'}">
                     <i class="fa-solid fa-check fa-2xl"></i>
