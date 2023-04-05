@@ -1,42 +1,44 @@
 <app-navbar></app-navbar>
 <div class="body-container">
-    <div class="form-container">
-        <h1>New Estimation</h1>
-        <form id="new-estimation-form">
-            <div class="form-grid">
-                <div>
-                    <label for="description">Description</label>
-                    <input type="text" id="description" name="description">
-                </div>
+    <ng-container *ngIf="viewModel$ | async as vm">
+        <div class="form-container">
+            <h1>New Estimation</h1>
+            <form id="new-estimation-form" [formGroup]="form" (submit)="submitForm()">
+                <div class="form-grid">
+                    <div>
+                        <label for="description">Description</label>
+                        <input type="text" id="description" placeholder="Describe your estimation using the S.D.P" formControlName="description">
+                    </div>
 
-                <div>
-                    <label for="estimator">Estimator</label>
-                    <select id="estimator" name="estimator">
-                        <option value="foo">foo</option>
-                        <option value="bar">bar</option>
-                    </select>
-                </div>
+                    <div>
+                        <label for="estimator">Estimator</label>
+                        <select id="estimator" formControlName="estimator" (change)="onChange($event)">
+                            <option value="" disabled selected>Select an estimator</option>
+                            <option *ngFor="let estimator of vm.estimators">{{estimator.estimatorName}}</option>
+                        </select>
+                    </div>
 
-                <div>
-                    <label for="product">Product</label>
-                    <select id="product" name="product">
-                        <option value="foo">foo</option>
-                        <option value="bar">bar</option>
-                    </select>
-                </div>
+                    <div>
+                        <label for="product">Product</label>
+                        <select id="product" formControlName="product" (change)="onChange($event)">
+                            <option value="" disabled selected>Select a product</option>
+                            <option *ngFor="let product of vm.products">{{product.productName}}</option>
+                        </select>
+                    </div>
 
-                <div>
-                    <label for="savings">Savings</label>
-                    <input type="number" id="savings" name="savings" step="1">
-                </div>
+                    <div>
+                        <label for="savings">Savings</label>
+                        <input type="number" id="savings" formControlName="savings" step="1">
+                    </div>
 
-                <div>
-                    <button type="button" id="clear">Clear</button>
-                    <button type="submit" id="submit">Submit</button>
+                    <div>
+                        <button type="button" id="clear">Clear</button>
+                        <button type="submit" id="submit">Submit</button>
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
+    </ng-container>
     <div class="instructions-container">
         <h1>Estimation Instructions</h1>
         <h2>- No fields can be left empty</h2>
@@ -48,7 +50,7 @@
         <h2>- The estimation's status will always start as "proposed"</h2>
         <h3>The status can only be changed on the "Estimations" page.</h3>
         <h2>- Ensure that all the information is correct before submitting the estimation</h2>
-        <h3>Inaccurate or incomplete estimations will be  promptly rejected.</h3>
+        <h3>Inaccurate or incomplete estimations will be promptly rejected.</h3>
     </div>
 </div>
 <app-footer></app-footer>

@@ -1,6 +1,6 @@
-.body-container{
+.body-container {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 55% 45%;
     background-color: #f2f7ff;
     height: 88vh;
     justify-items: center;
@@ -15,54 +15,54 @@
     border-radius: 1rem;
     border: 1px solid black;
 
-    h1{
+    h1 {
         text-align: center;
     }
 }
 
-form{
+form {
     margin-top: 5%;
 }
 
-.form-grid{
+.form-grid {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 33% 33% 33%;
 
-    label{
+    label {
         width: 90%;
         display: block;
         font-size: 1.5rem;
         color: rgb(82, 82, 82);
     }
 
-    div{
+    div {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
         margin: 3% 0;
     }
-    
-    div:nth-of-type(1){
+
+    div:nth-of-type(1) {
         grid-column: 1/3;
     }
 
-    div:nth-of-type(2){
+    div:nth-of-type(2) {
         grid-column: 1;
     }
 
-    div:nth-of-type(3){
+    div:nth-of-type(3) {
         grid-column: 2;
         display: flex;
         align-items: flex-end;
     }
 
-    div:nth-of-type(4){
+    div:nth-of-type(4) {
         grid-column: 1;
     }
 
-    div:nth-of-type(5){
+    div:nth-of-type(5) {
         grid-column: 2;
         display: flex;
         flex-direction: row;
@@ -71,7 +71,9 @@ form{
     }
 }
 
-input[type="text"], input[type="number"], select {
+input[type="text"],
+input[type="number"],
+select {
     width: 100%;
     padding: 5px;
     margin-top: 5px;
@@ -87,8 +89,13 @@ input[type="number"] {
     padding-left: 7%;
 }
 
-select{
+select {
     width: 90%;
+    color:rgb(114, 114, 114)
+}
+
+.select-dark {
+    color: rgb(0, 0, 0);
 }
 
 
@@ -105,11 +112,11 @@ button {
     margin-left: 5%;
 }
 
-button#clear{
+button#clear {
     background-color: grey;
 }
 
-button#submit{
+button#submit {
     background-color: green;
 }
 
@@ -119,22 +126,22 @@ button#submit{
 .instructions-container {
     background-color: rgb(210, 225, 249);
     border: 1px solid black;
-    width: 30vw;
+    width: 35vw;
     height: min-content;
     border-radius: 1rem;
     padding: 1rem;
 
-    h1{
+    h1 {
         margin-bottom: 2rem;
         text-align: center;
     }
 
-    h3{
+    h3 {
         margin-bottom: 2rem;
         font-weight: 550;
     }
 
-    h3:last-of-type{
+    h3:last-of-type {
         margin-bottom: 0.5rem;
     }
 }
