@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 55% 45%;
     background-color: #f2f7ff;
-    height: 88vh;
+    height: 86vh;
     justify-items: center;
     align-items: center;
 }
@@ -113,11 +113,16 @@ button {
 }
 
 button#clear {
-    background-color: grey;
+    background-color: blue;
 }
 
 button#submit {
-    background-color: green;
+    background-color: blue;
+}
+
+button:disabled {
+    background-color: rgb(211, 211, 252) !important;
+    cursor: default;
 }
 
 

@@ -68,6 +68,14 @@ export class NewEstimationComponent implements OnInit {
     estimatorsError: this.estimatorsError$
   })
 
+  isFormValid() {
+    const controls = this.form.controls;
+    return Object.keys(controls).every((fieldName) => {
+      const control = controls[fieldName];
+      return (control.value !== '' && control.value !== undefined);
+    });
+  }
+
   submitForm() {
     const formValue = this.form.value;
     const estimation: Estimation = {
