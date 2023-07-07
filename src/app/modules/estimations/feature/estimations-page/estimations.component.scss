@@ -1,9 +1,10 @@
-.body-container{
+.body-container {
     background-color: #f2f7ff;
-    height: 88vh;
+    height: 120vh;
+    margin-bottom: 10vh;
 }
 
-.list-container{
+.list-container {
     padding-top: 1.5rem;
     height: 60vh;
     display: flex;
@@ -11,7 +12,7 @@
     align-items: center;
 }
 
-.table-container{
+.table-container {
     width: 92vw;
     height: 2.8rem;
     background-color: white;
@@ -22,7 +23,7 @@
     grid-template-columns: 6% 16% 18% 32% 6% 10% 12%;
 }
 
-.headers-container{
+.headers-container {
     align-content: center;
     padding: 1rem 0;
     border-radius: 1rem 1rem 0 0;
@@ -32,12 +33,12 @@
     font-size: 1.5rem;
 }
 
-.filters-container{
+.filters-container {
     height: 3rem;
     padding-bottom: 1rem;
 }
 
-.filters-container input{
+.filters-container input {
     width: 72%;
     height: 2.5rem;
     padding: 0 0.5rem;
