@@ -6,6 +6,7 @@ import { Estimation } from '../../@models/estimation.model';
 import { EMPTY, catchError, combineLatest, ignoreElements, of, startWith } from 'rxjs';
 import { ProductService } from 'src/app/modules/products/data-access/product.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-estimation',
@@ -20,7 +21,8 @@ export class NewEstimationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private estimationService: EstimationService,
     private estimatorService: EstimatorService,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class NewEstimationComponent implements OnInit {
       description: new FormControl(''),
       estimator: new FormControl(''),
       product: new FormControl(''),
-      savings: new FormControl(undefined),
+      savings: new FormControl(0),
       status: new FormControl('proposed'),
     })
   }
@@ -84,14 +86,8 @@ export class NewEstimationComponent implements OnInit {
       productName: formValue.product,
       estimationSavings: formValue.savings
     };
-
-    if (!formValue.description || !formValue.estimator || !formValue.product || !formValue.savings) {
-
-      console.log('Please fill in all fields');
-      return;
-    }
-
     this.estimationService.postEstimation(estimation);
+    this.router.navigate(['/estimations']);
   }
 
   onChange(event: Event) {
