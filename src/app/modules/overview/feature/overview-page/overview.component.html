@@ -1,5 +1,18 @@
 <app-navbar></app-navbar>
 <div class="body-container">
-
+    <div class="graphs-container">
+        <div>
+           <h1 class="savingsText">${{getTotalSavings()}}</h1>
+           <h3>Saved so far</h3>
+        </div>
+        <div>
+            <h1>{{getApprovedEstimations()}}</h1>
+            <h3>Approved estimations</h3>
+        </div>
+        <div>
+            <h1 class="savingsText">${{findBiggestEstimation()}}</h1>
+            <h3>Current biggest estimation</h3>
+        </div>
+    </div>
 </div>
 <app-footer></app-footer>
