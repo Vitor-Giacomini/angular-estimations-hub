@@ -87,7 +87,9 @@ export class NewEstimationComponent implements OnInit {
       estimationSavings: formValue.savings
     };
     this.estimationService.postEstimation(estimation);
-    this.router.navigate(['/estimations']);
+    setTimeout(() => {
+      this.router.navigate(['/estimations']);
+    }, 2000);
   }
 
   onChange(event: Event) {
@@ -96,5 +98,4 @@ export class NewEstimationComponent implements OnInit {
       target.classList.add('select-dark');
     }
   }
-
 }
