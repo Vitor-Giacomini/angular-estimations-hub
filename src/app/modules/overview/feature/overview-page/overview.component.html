@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="body-container">
-    <div class="graphs-container">
+    <div class="cards-container">
         <div>
            <h1 class="savingsText">${{getTotalSavings()}}</h1>
            <h3>Saved so far</h3>
@@ -12,6 +12,25 @@
         <div>
             <h1 class="savingsText">${{findBiggestEstimation()}}</h1>
             <h3>Current biggest estimation</h3>
+        </div>
+    </div>
+    <div class="graph-container">
+        <div class="graph">
+            <div class="pie"></div>
+        </div>
+        <div class="graph-legend">
+            <div>
+                <span class="square green"></span>
+                <p>Total saved</p>
+            </div>
+            <div>
+                <span class="square yellow"></span>
+                <p>Waiting analysis</p>
+            </div>
+            <div>
+                <span class="square red"></span>
+                <p>Rejected</p>
+            </div>           
         </div>
     </div>
 </div>

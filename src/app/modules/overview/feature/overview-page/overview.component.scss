@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.graphs-container{
+.cards-container{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -37,4 +37,69 @@
 
 h3{
     color:rgb(100, 100, 100);
+}
+
+.graph-container{
+    height: 85%;
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.graph{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 50px;
+}
+
+.pie {
+    width: 600px;
+    height: 600px;
+    background-image: conic-gradient(lightgreen 0%, lightgreen 64%, coral 64%, coral 81%, yellow 81%, yellow 100%);
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.graph-legend{
+    width: 28%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+    }
+
+    .square{
+        display: flex;
+        height: 38px;
+        width: 38px;
+        border: 1px solid black;
+        margin-right: 20px;
+    }
+
+    .green{
+        background-color: lightgreen;
+    }
+
+    .red{
+        background-color: lightcoral;
+    }
+
+    .yellow{
+        background-color: yellow;
+    }
+
+    p{
+        font-size: 32px;
+    }
 }

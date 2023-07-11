@@ -17,6 +17,9 @@ export class OverviewComponent implements OnInit{
 
   estimationList!: Estimation[];
   productList!: Product[];
+  totalSavings: number = 0;
+  approvedEstimations: number = 0;
+  biggestEstimation: number = 0;
 
   ngOnInit(): void {
     this.estimationService.getEstimations().subscribe((estimations) => { this.estimationList = estimations });
@@ -30,6 +33,7 @@ export class OverviewComponent implements OnInit{
         totalSavings += estimation.estimationSavings;
       }
     });
+    this.totalSavings = totalSavings;
     return totalSavings;
   }
 
@@ -40,6 +44,7 @@ export class OverviewComponent implements OnInit{
         approvedEstimations++;
       }
     });
+    this.approvedEstimations = approvedEstimations;
     return approvedEstimations;
   }
 
@@ -50,6 +55,11 @@ export class OverviewComponent implements OnInit{
         maxSavings = estimation.estimationSavings;
       }
     });
+    this.biggestEstimation = maxSavings;
     return maxSavings;
+  }
+
+  generateGraph(){
+
   }
 }
