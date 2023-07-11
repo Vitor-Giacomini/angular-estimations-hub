@@ -58,8 +58,4 @@ export class OverviewComponent implements OnInit{
     this.biggestEstimation = maxSavings;
     return maxSavings;
   }
-
-  generateGraph(){
-
-  }
 }
