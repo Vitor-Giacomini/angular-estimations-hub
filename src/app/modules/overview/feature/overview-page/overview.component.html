@@ -1,20 +1,23 @@
 <app-navbar></app-navbar>
-<div class="body-container">
-    <div class="cards-container">
-        <div>
-           <h1 class="savingsText">${{getTotalSavings()}}</h1>
-           <h3>Saved so far</h3>
+<ng-container *ngIf="viewModel$ | async as vm">
+    <div class="body-container">
+        <div class="cards-container">
+            <div>
+            <h1 class="savingsText">${{totalSavings}}</h1>
+            <h3>Saved so far</h3>
+            </div>
+            <div>
+                <h1>{{approvedEstimations}}</h1>
+                <h3>Approved estimations</h3>
+            </div>
+            <div>
+                <h1 class="savingsText">${{biggestEstimation}}</h1>
+                <h3>Current biggest estimation</h3>
+            </div>
         </div>
-        <div>
-            <h1>{{getApprovedEstimations()}}</h1>
-            <h3>Approved estimations</h3>
-        </div>
-        <div>
-            <h1 class="savingsText">${{findBiggestEstimation()}}</h1>
-            <h3>Current biggest estimation</h3>
+        <div class="graph-container">
+            <app-pie-chart></app-pie-chart>
         </div>
     </div>
-    <div class="graph-container">
-    </div>
-</div>
+</ng-container>
 <app-footer></app-footer>
