@@ -1,10 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { startWith, catchError, EMPTY, ignoreElements, of, combineLatest, map, tap } from 'rxjs';
 import { Estimation } from 'src/app/modules/estimations/@models/estimation.model';
 import { EstimationService } from 'src/app/modules/estimations/data-access/estimation.service';
-import { Product } from 'src/app/modules/products/@models/product.model';
-import { ProductService } from 'src/app/modules/products/data-access/product.service';
 
 @Component({
   selector: 'app-overview',
@@ -46,7 +44,6 @@ export class OverviewComponent{
   );
 
   getTotalSavings(estimations: Estimation[]){
-    console.log(estimations);
     estimations.forEach(estimation => {
       if (estimation.estimationStatus === 'accepted') {
         this.totalSavings += estimation.estimationSavings;
