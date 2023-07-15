@@ -39,16 +39,30 @@ export class PieChartComponent{
       type: 'pie', 
 
       data: {
-        labels: ['Pending Analysis', 'Approved', 'Rejected'],
+        labels: ['Approved', 'Pending Analysis' , 'Rejected'],
 	       datasets: [{
     label: 'Estimations',
-    data: [this.pendingEstimations.length, this.approvedEstimations.length, this.rejectedEstimations.length],
-    backgroundColor: ['yellow', 'lightgreen', 'coral'],
+    data: [this.approvedEstimations.length, this.pendingEstimations.length, this.rejectedEstimations.length],
+    backgroundColor: ['lightgreen', 'yellow', 'coral'],
     hoverOffset: 4
   }],
       },
       options: {
-        aspectRatio:1
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'right',
+            labels: {
+              boxWidth: 30,
+              boxHeight: 30,
+              padding: 20,
+              font: {
+                size: 32,
+              },
+            },
+          }
+        }
       }
     });
   }
