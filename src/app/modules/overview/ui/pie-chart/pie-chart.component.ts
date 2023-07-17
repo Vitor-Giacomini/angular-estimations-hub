@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Estimation } from 'src/app/modules/estimations/@models/estimation.model';
 
 @Component({
@@ -40,17 +41,44 @@ export class PieChartComponent{
 
       data: {
         labels: ['Approved', 'Pending Analysis' , 'Rejected'],
-	       datasets: [{
-    label: 'Estimations',
-    data: [this.approvedEstimations.length, this.pendingEstimations.length, this.rejectedEstimations.length],
-    backgroundColor: ['lightgreen', 'yellow', 'coral'],
-    hoverOffset: 4
-  }],
+        datasets: [{
+          label: 'Estimations',
+          data: [this.approvedEstimations.length, this.pendingEstimations.length, this.rejectedEstimations.length],
+          backgroundColor: ['lightgreen', 'yellow', 'coral'],
+          hoverOffset: 4
+        }],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
+          datalabels: {
+            formatter: (value, context) => {
+              let label = context.chart.data.labels![context.dataIndex];
+              let sum = 0;
+
+              let arrayToSum;
+              if (label === 'Approved') arrayToSum = this.approvedEstimations;
+              else if (label === 'Pending Analysis') arrayToSum = this.pendingEstimations;
+              else if (label === 'Rejected') arrayToSum = this.rejectedEstimations;
+
+              if (arrayToSum) {
+                sum = arrayToSum.reduce((total, estimation) => {
+                  return total + (estimation.estimationSavings || 0);
+                }, 0);
+              }
+
+              return "$" + sum;
+            },
+            font: {
+              size: 42,
+              weight: 500,
+            },
+            color: 'black', 
+            anchor: 'end',
+            align: 'start',
+            offset: 50,
+          },
           legend: {
             position: 'right',
             labels: {
@@ -63,7 +91,9 @@ export class PieChartComponent{
             },
           }
         }
-      }
+      },
+      plugins: [ChartDataLabels]
     });
   }
 }
+
