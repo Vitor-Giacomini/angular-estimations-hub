@@ -2,7 +2,7 @@
 
 .body-container{
     display: grid;
-    grid-template-columns: 45% 55%;
+    grid-template-columns: 45% 50%;
     background-color: #f2f7ff;
     height: 86vh;
     justify-items: center;
@@ -43,4 +43,5 @@
 .body-image img{
     width: 50rem;
     border-radius: 2rem;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.239);
 }
