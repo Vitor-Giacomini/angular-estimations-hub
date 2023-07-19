@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EstimationService } from '../../data-access/estimation.service';
 import { EstimatorService } from '../../data-access/estimator.service';
 import { Estimation } from '../../@models/estimation.model';
@@ -27,11 +27,11 @@ export class NewEstimationComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      description: new FormControl(''),
-      estimator: new FormControl(''),
-      product: new FormControl(''),
-      savings: new FormControl(0),
-      status: new FormControl('proposed'),
+      description: new FormControl('', Validators.required),
+      estimator: new FormControl('', Validators.required),
+      product: new FormControl('', Validators.required),
+      savings: new FormControl(0, [Validators.required, Validators.pattern("^[0-9]*$")]),
+      status: new FormControl('proposed', Validators.required),
     })
   }
 
@@ -69,14 +69,6 @@ export class NewEstimationComponent implements OnInit {
     estimators: this.estimators$,
     estimatorsError: this.estimatorsError$
   })
-
-  isFormValid() {
-    const controls = this.form.controls;
-    return Object.keys(controls).every((fieldName) => {
-      const control = controls[fieldName];
-      return (control.value !== '' && control.value !== undefined);
-    });
-  }
 
   submitForm() {
     const formValue = this.form.value;
