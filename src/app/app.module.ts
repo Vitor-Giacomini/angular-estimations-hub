@@ -15,6 +15,7 @@ import { ProductListComponent } from './modules/products/ui/product-list/product
 import { ProductCardComponent } from './modules/products/ui/product-card/product-card.component';
 import { NewEstimationComponent } from './modules/estimations/feature/new-estimation-page/new-estimation.component';
 import { PieChartComponent } from './modules/overview/ui/pie-chart/pie-chart.component';
+import { ColumnChartComponent } from './modules/overview/ui/column-chart/column-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { PieChartComponent } from './modules/overview/ui/pie-chart/pie-chart.com
     ProductListComponent,
     ProductCardComponent,
     NewEstimationComponent,
-    PieChartComponent
+    PieChartComponent,
+    ColumnChartComponent
   ],
   imports: [
     BrowserModule,
