@@ -2,13 +2,13 @@
 <ng-container *ngIf="viewModel$ | async as vm">
     <div class="body-container">
         <div class="savings-panel">
-            <h1>2022 Savings</h1>
+            <h1>Cost Difference</h1>
             <div class="graph-container">
-                <app-column-chart [estimations]="vm.estimations!"></app-column-chart>
+                <app-column-chart [products]="vm.products!" [estimations]="vm.estimations!"></app-column-chart>
             </div>
         </div>
         <div class="estimations-panel">
-            <h1>Estimations</h1>
+            <h1>2022 Savings</h1>
             <div class="graph-container">
                 <app-pie-chart [estimations]="vm.estimations!"></app-pie-chart>
             </div>
