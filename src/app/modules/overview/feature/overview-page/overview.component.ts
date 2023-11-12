@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { startWith, catchError, EMPTY, ignoreElements, of, combineLatest, map, tap } from 'rxjs';
 import { Estimation } from 'src/app/modules/estimations/@models/estimation.model';
 import { EstimationService } from 'src/app/modules/estimations/data-access/estimation.service';
+import { ProductService } from 'src/app/modules/products/data-access/product.service';
 
 @Component({
   selector: 'app-overview',
@@ -11,7 +12,7 @@ import { EstimationService } from 'src/app/modules/estimations/data-access/estim
 })
 export class OverviewComponent{
 
-  constructor(private estimationService: EstimationService) { }
+  constructor(private estimationService: EstimationService, private productService: ProductService) { }
 
   estimationList!: Estimation[];
   totalSavings: number = 0;
@@ -30,42 +31,23 @@ export class OverviewComponent{
       return of(error);
     })
   )
+  products$ = this.productService.getProducts().pipe(
+    startWith(null),
+    catchError(() => EMPTY)
+  )
+  productsError$ = this.productService.getProducts().pipe(
+    ignoreElements(),
+    startWith(null),
+    catchError(error => {
+      error = new HttpErrorResponse({ status: 404, statusText: 'Could not load products' });
+      return of(error);
+    })
+  )
+
   viewModel$ = combineLatest({
     estimations: this.estimations$,
-    estimationsError: this.estimationsError$
-  }).pipe(
-    tap(({estimations}) => {
-      if (estimations) {
-        this.getTotalSavings(estimations);
-        this.getApprovedEstimations(estimations);
-        this.findBiggestEstimation(estimations);
-      }
-    })
-  );
-
-  getTotalSavings(estimations: Estimation[]){
-    estimations.forEach(estimation => {
-      if (estimation.estimationStatus === 'accepted') {
-        this.totalSavings += estimation.estimationSavings;
-      }
-    });
-  }
-
-  getApprovedEstimations(estimations: Estimation[]){
-    estimations.forEach(estimation => {
-      if (estimation.estimationStatus === 'accepted') {
-        this.approvedEstimations++;
-      }
-    });
-  }
-
-  findBiggestEstimation(estimations: Estimation[]){
-    let maxSavings = 0;
-    estimations.forEach((estimation) => {
-      if (estimation.estimationSavings > maxSavings) {
-        maxSavings = estimation.estimationSavings;
-      }
-    });
-    this.biggestEstimation = maxSavings;
-  }
+    estimationsError: this.estimationsError$,
+    products: this.products$,
+    productsError: this.productsError$
+  });
 }
