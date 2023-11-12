@@ -43,7 +43,10 @@ export class PieChartComponent{
         labels: ['Approved', 'Pending Analysis' , 'Rejected'],
         datasets: [{
           label: 'Estimations',
-          data: [this.approvedEstimations.length, this.pendingEstimations.length, this.rejectedEstimations.length],
+          data: [
+            this.approvedEstimations.length, 
+            this.pendingEstimations.length, 
+            this.rejectedEstimations.length],
           backgroundColor: ['lightgreen', 'yellow', 'coral'],
           hoverOffset: 4
         }],
