@@ -12,7 +12,6 @@ export class EstimationsListComponent implements OnInit{
   constructor(private estimationService: EstimationService) {}
 
   ngOnInit(): void {
-    console.log(this.estimationList);
     this.estimationList.sort((a, b) => b.estimationId! - a.estimationId!);
   }
 
