@@ -19,7 +19,6 @@ export class ProductCardComponent implements OnInit{
   totalSavings = 0;
   
   ngOnInit(): void {
-    console.log(this.product);
     this.calculateCounts();
     this.getTotalSavings();
   }
