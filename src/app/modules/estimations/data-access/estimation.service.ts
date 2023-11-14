@@ -19,7 +19,6 @@ export class EstimationService {
   }
 
   setEstimationStatus(estimation: Estimation) {
-    console.log('running');
     this.http.put(`http://${this.baseUrl}/${estimation.estimationId}`, estimation)
       .subscribe(
         (error) => console.log(error)
@@ -27,7 +26,6 @@ export class EstimationService {
   }
 
   postEstimation(estimation: Estimation) {
-    console.log('running');
     this.http.post(`http://${this.baseUrl}`, estimation)
       .subscribe(
         (error) => console.log(error)
