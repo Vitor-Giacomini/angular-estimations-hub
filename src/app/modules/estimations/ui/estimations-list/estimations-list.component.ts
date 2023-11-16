@@ -16,8 +16,6 @@ export class EstimationsListComponent implements OnInit{
   }
 
   @Input() estimationList!: Estimation[];
-  //@Input() estimatorList!: Estimator[];
-  //@Input() productList!: Product[];
 
   setEstimationStatus(estimation: Estimation, status: string){
     estimation.estimationStatus = status;
