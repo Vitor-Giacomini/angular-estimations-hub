@@ -15,52 +15,30 @@ export class ColumnChartComponent {
   @Input() products!: Product[];
   @Input() estimations!: Estimation[];
 
-  chairEstimations: Estimation[] = [];
-  tableEstimations: Estimation[] = [];
-  stoolEstimations: Estimation[] = [];
-
-  chairSavings: number = 0;
-  tableSavings: number = 0;
-  stoolSavings: number = 0;
-
-  chairCombinedPrice = 220;
-  tableCombinedPrice = 280;
-  stoolCombinedPrice = 160;
+  // Average 2022 product cost //
+  poltronaRealeza = 130;
+  poltrona = 70;
+  assentoDeMao = 110;
+  mesaQuadrada = 90;
+  mesaBar = 60;
+  mesaNormal = 90;
+  bancoVintage = 100;
+  bancoMadeira = 30;
+  bancoSaloon = 120;
+  // ------------------------ //
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['estimations'] && changes['estimations'].currentValue) {
-      this.mapEstimations();
+      this.createChart();
     }
   }
 
-  mapEstimations(){
-    this.estimations.forEach(estimation => {
-      if (estimation.productName.includes("Poltrona") || estimation.productName.includes("Assento")) {
-        this.chairEstimations.push(estimation);
-      } else if (estimation.productName.includes("Mesa")) {
-        this.tableEstimations.push(estimation);
-      } else if (estimation.productName.includes("Banco")) {
-        this.stoolEstimations.push(estimation);
-      }
-    });    
-    this.getSavings();
-    this.createChart();
-  }
-
-  getSavings(){
-    this.chairSavings = this.chairEstimations.reduce((total, estimation) => {
+  calculateSavings(productName: String){
+    return this.estimations.filter(estimation => 
+      estimation.productName === productName).reduce((total, estimation) => {
       return estimation.estimationStatus === "accepted" ? total + estimation.estimationSavings : total;
     }, 0);
-  
-    this.tableSavings = this.tableEstimations.reduce((total, estimation) => {
-      return estimation.estimationStatus === "accepted" ? total + estimation.estimationSavings : total;
-    }, 0);
-  
-    this.stoolSavings = this.stoolEstimations.reduce((total, estimation) => {
-      return estimation.estimationStatus === "accepted" ? total + estimation.estimationSavings : total;
-    }, 0); 
   }
-  
 
   createChart(){
     if (this.chart) {
@@ -70,13 +48,23 @@ export class ColumnChartComponent {
     this.chart = new Chart("columnChart", { 
       type: 'bar',
       data: {
-        labels: ['Chairs', 'Tables', 'Stools'], 
+        labels: 
+          this.products.map(product => {
+            return product.productName;
+          }), 
         datasets: [{
           label: 'Cost - Savings',
           data: [
-            this.chairCombinedPrice - this.chairSavings, 
-            this.tableCombinedPrice - this.tableSavings, 
-            this.stoolCombinedPrice - this.stoolSavings],
+            this.poltronaRealeza - this.calculateSavings(this.products[0].productName),
+            this.poltrona - this.calculateSavings(this.products[1].productName),
+            this.assentoDeMao - this.calculateSavings(this.products[2].productName),
+            this.mesaQuadrada - this.calculateSavings(this.products[3].productName),
+            this.mesaBar - this.calculateSavings(this.products[4].productName),
+            this.mesaNormal - this.calculateSavings(this.products[5].productName),
+            this.bancoVintage - this.calculateSavings(this.products[6].productName),
+            this.bancoMadeira - this.calculateSavings(this.products[7].productName),
+            this.bancoSaloon - this.calculateSavings(this.products[8].productName),
+          ],
           backgroundColor: 'rgba(46, 204, 113, 0.5)',
           borderColor: 'rgba(46, 204, 113, 1)',
           borderWidth: 1,
@@ -86,7 +74,17 @@ export class ColumnChartComponent {
         },
         {
           label: 'Original Cost',
-          data: [this.chairCombinedPrice, this.tableCombinedPrice, this.stoolCombinedPrice], 
+          data: [
+            this.poltronaRealeza,
+            this.poltrona,
+            this.assentoDeMao,
+            this.mesaQuadrada,
+            this.mesaBar,
+            this.mesaNormal,
+            this.bancoVintage,
+            this.bancoMadeira,
+            this.bancoSaloon,
+          ], 
           backgroundColor: 'rgba(255, 99, 132, 0.5)',
           borderColor: 'rgba(255, 99, 132, 1)',
           borderWidth: 1,
@@ -109,7 +107,7 @@ export class ColumnChartComponent {
             offset: true,
             ticks: {
               font: {
-                size: 20
+                size: 18
               }
             }
           },
@@ -129,9 +127,9 @@ export class ColumnChartComponent {
           legend: {
             display: true,
             labels: {
-              padding: 20,
+              padding: 40,
               font: {
-                size: 20
+                size: 18
               }
             }
           }
@@ -139,12 +137,6 @@ export class ColumnChartComponent {
       },
       plugins: [ChartDataLabels]
     });
-  
-    // You will need to adjust your approach to update or configure the chart as manipulating _model is not recommended.
-    // The recommended approach is to update the chart data and then call this.chart.update();
-  
-    this.chart.update(); // Update the chart to render the shifted bars
+    this.chart.update(); 
   }
-  
-  
 }
