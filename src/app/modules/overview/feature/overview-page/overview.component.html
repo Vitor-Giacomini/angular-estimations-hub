@@ -2,16 +2,26 @@
 <ng-container *ngIf="viewModel$ | async as vm">
     <div class="body-container">
         <div class="savings-panel">
-            <h1>Cost Difference</h1>
-            <div class="graph-container">
+            <h1>Savings comparison by product</h1>
+            <div class="graph-container" *ngIf="vm.products">
                 <app-column-chart [products]="vm.products!" [estimations]="vm.estimations!"></app-column-chart>
             </div>
         </div>
-        <div class="estimations-panel">
-            <h1>2022 Savings</h1>
-            <div class="graph-container">
-                <app-pie-chart [estimations]="vm.estimations!"></app-pie-chart>
-            </div>
+        <div class="cards-container">
+            <ng-container *ngIf="vm.estimations && vm.products">
+                <div>
+                    <h1 class="savingsText">${{getAverageSavings(vm.estimations, vm.products)}}</h1>
+                    <h3>Average saved per product</h3>
+                </div>
+                <div>
+                    <h1 class="savingsText">${{findBiggestEstimation(vm.estimations)}}</h1>
+                    <h3>Current biggest estimation</h3>
+                </div>
+                <div>
+                    <h1>{{getApprovedEstimations(vm.estimations)}}</h1>
+                    <h3>Approved estimations</h3>
+                </div>
+            </ng-container>
         </div>
     </div>
 </ng-container>
