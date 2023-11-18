@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { startWith, catchError, EMPTY, ignoreElements, of, combineLatest, map, tap } from 'rxjs';
 import { Estimation } from 'src/app/modules/estimations/@models/estimation.model';
 import { EstimationService } from 'src/app/modules/estimations/data-access/estimation.service';
+import { Product } from 'src/app/modules/products/@models/product.model';
 import { ProductService } from 'src/app/modules/products/data-access/product.service';
 
 @Component({
@@ -13,15 +14,13 @@ import { ProductService } from 'src/app/modules/products/data-access/product.ser
 export class OverviewComponent{
 
   constructor(private estimationService: EstimationService, private productService: ProductService) { }
-
-  estimationList!: Estimation[];
   totalSavings: number = 0;
   approvedEstimations: number = 0;
   biggestEstimation: number = 0;
 
   estimations$ = this.estimationService.getEstimations().pipe(
     startWith(null),
-    catchError(() => EMPTY)
+    catchError(() => EMPTY),
   );
   estimationsError$ = this.estimationService.getEstimations().pipe(
     ignoreElements(),
@@ -33,7 +32,7 @@ export class OverviewComponent{
   )
   products$ = this.productService.getProducts().pipe(
     startWith(null),
-    catchError(() => EMPTY)
+    catchError(() => EMPTY),
   )
   productsError$ = this.productService.getProducts().pipe(
     ignoreElements(),
@@ -50,4 +49,34 @@ export class OverviewComponent{
     products: this.products$,
     productsError: this.productsError$
   });
+
+  getAverageSavings(estimationList: Estimation[], productList: Product[]){
+    let totalSavings = 0;
+    estimationList.forEach(estimation => {
+      if (estimation.estimationStatus === 'accepted') {
+        totalSavings += estimation.estimationSavings;
+      }
+    });
+    return (totalSavings/productList.length).toFixed(2);
+  }
+
+  getApprovedEstimations(estimationList: Estimation[]){
+    let approvedEstimations = 0;
+    estimationList.forEach(estimation => {
+      if (estimation.estimationStatus === 'accepted') {
+        approvedEstimations++;
+      }
+    });
+    return approvedEstimations;
+  }
+
+  findBiggestEstimation(estimationList: Estimation[]){
+    let maxSavings = 0;
+    estimationList.forEach((estimation) => {
+      if (estimation.estimationSavings > maxSavings) {
+        maxSavings = estimation.estimationSavings;
+      }
+    });
+    return maxSavings;
+  }
 }
